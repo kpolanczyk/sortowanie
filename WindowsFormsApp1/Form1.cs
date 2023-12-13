@@ -7,9 +7,12 @@ using System.Data.SqlTypes;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.Threading;
 
 namespace WindowsFormsApp1
 {
@@ -21,6 +24,17 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            chart1.Series.Add("CzasWykonania");
+            chart1.Series["CzasWykonania"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+            chart1.Series["CzasWykonania"].Color = System.Drawing.Color.DarkRed;
+            chart1.Series["CzasWykonania"].MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            chart1.Titles.Add("Czas wykonania sortowania");
+
+            chart1.ChartAreas[0].AxisX.Title = "Rodzaj sortowania";
+            chart1.ChartAreas[0].AxisY.Title = "Czas wykonania (ms)";
+        }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -29,12 +43,12 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            array = new int[10];
+            array = new int[10000];
             Random rnd = new Random();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 10000; i++)
             {
-                this.array[i] = rnd.Next(100);
+                this.array[i] = rnd.Next(1000);
                 Generowane.Items.Add((this.array[i]));
             }
         }
@@ -138,6 +152,64 @@ namespace WindowsFormsApp1
             arr[right] = temp1;
             return i + 1;
         }
+
+        private List<int> MergeSortAlgo(List<int> arr)
+        {
+            if (arr.Count <= 1)
+                return arr;
+
+            int srodek = arr.Count / 2;
+
+            List<int> left = new List<int>();
+            List<int> right = new List<int>();
+
+            for (int i = 0; i < srodek; i++)
+                left.Add(arr[i]);
+            for (int i = srodek; i < arr.Count; i++)
+                right.Add(arr[i]);
+
+            left = MergeSortAlgo(left);
+            right = MergeSortAlgo(right);
+
+            return Merge(left, right);
+        }
+
+
+        private List<int> Merge(List<int> left, List<int> right)
+        {
+            List<int> result = new List<int>();
+
+            while (left.Count > 0 || right.Count > 0)
+            {
+                if (left.Count > 0 && right.Count > 0)
+                {
+                    if (left[0] <= right[0])
+                    {
+                        result.Add(left[0]);
+                        left.RemoveAt(0);
+                    }
+                    else
+                    {
+                        result.Add(right[0]);
+                        right.RemoveAt(0);
+                    }
+                }
+                else if (left.Count > 0)
+                {
+                    result.Add(left[0]);
+                    left.RemoveAt(0);
+                }
+                else if (right.Count > 0)
+                {
+                    result.Add(right[0]);
+                    right.RemoveAt(0);
+                }
+            }
+            return result;
+        }
+    
+
+        
         private void Wybor_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -160,6 +232,10 @@ namespace WindowsFormsApp1
             {
                 DoPosortowania.Add(Convert.ToInt32(item));
             }
+
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             if (Babelkowe.Checked)
             {
                 Bubblesort(DoPosortowania);
@@ -176,6 +252,23 @@ namespace WindowsFormsApp1
             {
                 Quicksort(DoPosortowania, 0, DoPosortowania.Count -1);
             }
+            else if (Scalanie.Checked)
+            {
+                DoPosortowania = MergeSortAlgo(DoPosortowania);
+            }
+
+            stopwatch.Stop();
+            TimeSpan czasWykonania = stopwatch.Elapsed;
+
+            if(chart1.Series.IndexOf("CzasWykonania") == -1)
+            {
+                chart1.Series.Add("CzasWykonania");
+                chart1.Series["CzasWykonania"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+                chart1.Series["CzasWykonania"].Color = System.Drawing.Color.DarkRed;
+                chart1.Series["CzasWykonania"].MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            }
+
+            chart1.Series["CzasWykonania"].Points.AddXY(WybraneSortowanie(), czasWykonania.TotalMilliseconds);
 
             Sortowane.Items.Clear();
 
@@ -183,6 +276,21 @@ namespace WindowsFormsApp1
             {
                 Sortowane.Items.Add(item);
             }
+        }
+        private string WybraneSortowanie()
+        {
+            if (Babelkowe.Checked)
+                return "Sortowanie Bąbelkowe";
+            else if (Wybor.Checked)
+                return "Sortowanie Przez Wybór";
+            else if (Wstawianie.Checked)
+                return "Sortowanie Przez Wstawianie";
+            else if (Szybkie.Checked)
+                return "Sortowanie Szybkie";
+            else if (Scalanie.Checked)
+                return "Sortowanie Przez Scalanie";
+            else
+                return "Brak wyboru";
         }
     }
 }
