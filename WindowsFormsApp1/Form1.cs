@@ -41,15 +41,58 @@ namespace WindowsFormsApp1
 
         }
 
+        private void Malejace_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(textBoxLiczby.Text, out int iloscLiczb) && iloscLiczb > 0)
+            {
+                array = new int[iloscLiczb];
+
+                for (int i = 0; i < iloscLiczb; i++)
+                {
+                    array[i] = iloscLiczb - i;
+                    Generowane.Items.Add(array[i]);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Proszę podać poprawną liczbę liczb do wygenerowania.");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(textBoxLiczby.Text, out int iloscLiczb) && iloscLiczb > 0)
+            {
+                array = new int[iloscLiczb];
+
+                for (int i = 0; i < iloscLiczb; i++)
+                {
+                    array[i] = i + 1;
+                    Generowane.Items.Add(array[i]);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Proszę podać poprawną liczbę liczb do wygenerowania.");
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            array = new int[10000];
-            Random rnd = new Random();
-
-            for (int i = 0; i < 10000; i++)
+            if (int.TryParse(textBoxLiczby.Text, out int iloscLiczb) && iloscLiczb > 0)
             {
-                this.array[i] = rnd.Next(1000);
-                Generowane.Items.Add((this.array[i]));
+                array = new int[iloscLiczb];
+                Random rnd = new Random();
+
+                for (int i = 0; i < iloscLiczb; i++)
+                {
+                    array[i] = rnd.Next(1000);
+                    Generowane.Items.Add(array[i]);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Proszę podać poprawną liczbę liczb do wygenerowania.");
             }
         }
 
@@ -292,5 +335,14 @@ namespace WindowsFormsApp1
             else
                 return "Brak wyboru";
         }
+
+        
+
+        private void textBoxLiczby_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }
