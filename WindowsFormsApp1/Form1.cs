@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Threading;
+using static WindowsFormsApp1.Form1;
 
 namespace WindowsFormsApp1
 {
@@ -36,10 +37,7 @@ namespace WindowsFormsApp1
             chart1.ChartAreas[0].AxisY.Title = "Czas wykonania (ms)";
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void Malejace_Click(object sender, EventArgs e)
         {
@@ -96,176 +94,9 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        public interface ISorter
         {
-
-        }
-       
-
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Babelkowe_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void Bubblesort(List<int> arr)
-        {
-            int n = arr.Count;
-            for (int i = 0;i < n - 1;i++) 
-            { 
-            for (int j = 0;j < n - 1;j++)
-                {
-                    if (arr[j] > arr[j + 1])
-                    {
-                        int temp = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = temp; 
-                    }
-                }
-            }
-        }
-        private void Selectionsort(List<int> arr)
-        {
-            int n = arr.Count;
-
-            for (int i = 0; i < n - 1; i++)
-            {
-                int minIndex = i;
-                for (int j = i ; j < n; j++)
-                {
-                    if (arr[j] < arr[minIndex])
-                    {
-                        minIndex = j;
-                    }
-                }
-                int temp = arr[minIndex];
-                arr[minIndex] = arr[i];
-                arr[i] = temp;
-            }
-        }
-        
-
-        private List<int> Insertionsort(List<int> arr)
-        {
-            int n = arr.Count;
-            for (int i = 0; i < n; i++)
-            {
-                int key = arr[i];
-                int j = i - 1;
-
-                while(j >= 0 && arr[j] > key)
-                {
-                    arr[j + 1] = arr[j];
-                    j = j - 1;
-                }
-                arr[j + 1] = key;
-            }
-            return arr;
-        } 
-
-        private void Quicksort(List<int> arr, int left, int right)
-        {
-            if (left<right)
-            {
-                int pi = Partition(arr, left, right);
-                Quicksort(arr, left, pi - 1);
-                Quicksort(arr, pi + 1, right);
-            }
-        }
-        private int Partition(List<int> arr, int left, int right)
-        {
-            int pivot = arr[right];
-            int i = left -1;
-
-            for(int j = left; j < right; j++)
-            {
-                if (arr[j] < pivot)
-                {
-                    i++;
-                    int temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
-                }
-            }
-            int temp1 = arr[i + 1];
-            arr[i + 1] = arr[right];
-            arr[right] = temp1;
-            return i + 1;
-        }
-
-        private List<int> MergeSortAlgo(List<int> arr)
-        {
-            if (arr.Count <= 1)
-                return arr;
-
-            int srodek = arr.Count / 2;
-
-            List<int> left = new List<int>();
-            List<int> right = new List<int>();
-
-            for (int i = 0; i < srodek; i++)
-                left.Add(arr[i]);
-            for (int i = srodek; i < arr.Count; i++)
-                right.Add(arr[i]);
-
-            left = MergeSortAlgo(left);
-            right = MergeSortAlgo(right);
-
-            return Merge(left, right);
-        }
-
-
-        private List<int> Merge(List<int> left, List<int> right)
-        {
-            List<int> result = new List<int>();
-
-            while (left.Count > 0 || right.Count > 0)
-            {
-                if (left.Count > 0 && right.Count > 0)
-                {
-                    if (left[0] <= right[0])
-                    {
-                        result.Add(left[0]);
-                        left.RemoveAt(0);
-                    }
-                    else
-                    {
-                        result.Add(right[0]);
-                        right.RemoveAt(0);
-                    }
-                }
-                else if (left.Count > 0)
-                {
-                    result.Add(left[0]);
-                    left.RemoveAt(0);
-                }
-                else if (right.Count > 0)
-                {
-                    result.Add(right[0]);
-                    right.RemoveAt(0);
-                }
-            }
-            return result;
-        }
-    
-
-        
-        private void Wybor_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Szybkie_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Scalanie_CheckedChanged(object sender, EventArgs e)
-        {
-
+            void Sort(List<int> arr);
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -275,29 +106,33 @@ namespace WindowsFormsApp1
             {
                 DoPosortowania.Add(Convert.ToInt32(item));
             }
-
+            var bubbleSort = new Bubblesort();
+            var insertionSort = new Insertionsort();
+            var selectionSort = new Selectionsort();
+            var quickSort = new Quicksort();
+            var mergeSort = new Mergesort();
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
             if (Babelkowe.Checked)
             {
-                Bubblesort(DoPosortowania);
+                bubbleSort.Sort(DoPosortowania);
             }
             else if (Wybor.Checked)
             {
-                Selectionsort(DoPosortowania);
+                selectionSort.Sort(DoPosortowania);
             }
             else if (Wstawianie.Checked)
             {
-                Insertionsort(DoPosortowania);
+                insertionSort.Sort(DoPosortowania);
             }
             else if (Szybkie.Checked)
             {
-                Quicksort(DoPosortowania, 0, DoPosortowania.Count -1);
+                quickSort.Sort(DoPosortowania);
             }
             else if (Scalanie.Checked)
             {
-                DoPosortowania = MergeSortAlgo(DoPosortowania);
+                mergeSort.Sort(DoPosortowania);
             }
 
             stopwatch.Stop();
@@ -312,6 +147,8 @@ namespace WindowsFormsApp1
             }
 
             chart1.Series["CzasWykonania"].Points.AddXY(WybraneSortowanie(), czasWykonania.TotalMilliseconds);
+
+            listBox1.Items.Add($"{WybraneSortowanie()}: {czasWykonania.TotalMilliseconds} ms");
 
             Sortowane.Items.Clear();
 
@@ -336,13 +173,71 @@ namespace WindowsFormsApp1
                 return "Brak wyboru";
         }
 
-        
-
         private void textBoxLiczby_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        
+        private void Form1_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Generowane.Items.Clear();
+            Sortowane.Items.Clear();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            chart1.Series["CzasWykonania"].Points.Clear();
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void Wybor_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Szybkie_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Scalanie_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void Babelkowe_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CzyscWynik_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+        }
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
