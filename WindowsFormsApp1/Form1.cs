@@ -41,6 +41,7 @@ namespace WindowsFormsApp1
 
         private void Malejace_Click(object sender, EventArgs e)
         {
+           Generowane.Items.Clear();
             if (int.TryParse(textBoxLiczby.Text, out int iloscLiczb) && iloscLiczb > 0)
             {
                 array = new int[iloscLiczb];
@@ -59,6 +60,7 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Generowane.Items.Clear();
             if (int.TryParse(textBoxLiczby.Text, out int iloscLiczb) && iloscLiczb > 0)
             {
                 array = new int[iloscLiczb];
@@ -77,6 +79,7 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Generowane.Items.Clear();
             if (int.TryParse(textBoxLiczby.Text, out int iloscLiczb) && iloscLiczb > 0)
             {
                 array = new int[iloscLiczb];
@@ -146,9 +149,9 @@ namespace WindowsFormsApp1
                 chart1.Series["CzasWykonania"].MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             }
 
-            chart1.Series["CzasWykonania"].Points.AddXY(WybraneSortowanie(), czasWykonania.TotalMilliseconds);
+            chart1.Series["CzasWykonania"].Points.AddXY(WybraneSortowanie(), Math.Round(czasWykonania.TotalMilliseconds));
 
-            listBox1.Items.Add($"{WybraneSortowanie()}: {czasWykonania.TotalMilliseconds} ms");
+            listBox1.Items.Add($"{WybraneSortowanie()}: {Math.Round(czasWykonania.TotalMilliseconds)} ms");
 
             Sortowane.Items.Clear();
 
@@ -236,6 +239,16 @@ namespace WindowsFormsApp1
             listBox1.Items.Clear();
         }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }

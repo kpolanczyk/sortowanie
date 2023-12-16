@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Sortowane = new System.Windows.Forms.ListBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Generowane = new System.Windows.Forms.ListBox();
@@ -48,13 +48,17 @@
             this.button3 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.CzyscWynik = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // Sortowane
             // 
             this.Sortowane.FormattingEnabled = true;
-            this.Sortowane.Location = new System.Drawing.Point(322, 80);
+            this.Sortowane.Location = new System.Drawing.Point(349, 61);
             this.Sortowane.Name = "Sortowane";
             this.Sortowane.Size = new System.Drawing.Size(105, 238);
             this.Sortowane.TabIndex = 0;
@@ -62,16 +66,16 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(469, 35);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
+            this.chart1.Location = new System.Drawing.Point(488, 18);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(300, 300);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
@@ -80,7 +84,7 @@
             // Generowane
             // 
             this.Generowane.FormattingEnabled = true;
-            this.Generowane.Location = new System.Drawing.Point(201, 80);
+            this.Generowane.Location = new System.Drawing.Point(221, 61);
             this.Generowane.Name = "Generowane";
             this.Generowane.Size = new System.Drawing.Size(106, 238);
             this.Generowane.TabIndex = 2;
@@ -88,7 +92,7 @@
             // 
             // Losowe
             // 
-            this.Losowe.Location = new System.Drawing.Point(53, 119);
+            this.Losowe.Location = new System.Drawing.Point(53, 136);
             this.Losowe.Name = "Losowe";
             this.Losowe.Size = new System.Drawing.Size(72, 28);
             this.Losowe.TabIndex = 3;
@@ -99,7 +103,7 @@
             // Babelkowe
             // 
             this.Babelkowe.AutoSize = true;
-            this.Babelkowe.Location = new System.Drawing.Point(53, 163);
+            this.Babelkowe.Location = new System.Drawing.Point(53, 175);
             this.Babelkowe.Name = "Babelkowe";
             this.Babelkowe.Size = new System.Drawing.Size(79, 17);
             this.Babelkowe.TabIndex = 4;
@@ -110,7 +114,7 @@
             // Wybor
             // 
             this.Wybor.AutoSize = true;
-            this.Wybor.Location = new System.Drawing.Point(53, 186);
+            this.Wybor.Location = new System.Drawing.Point(53, 198);
             this.Wybor.Name = "Wybor";
             this.Wybor.Size = new System.Drawing.Size(57, 17);
             this.Wybor.TabIndex = 5;
@@ -121,7 +125,7 @@
             // Wstawianie
             // 
             this.Wstawianie.AutoSize = true;
-            this.Wstawianie.Location = new System.Drawing.Point(53, 209);
+            this.Wstawianie.Location = new System.Drawing.Point(53, 221);
             this.Wstawianie.Name = "Wstawianie";
             this.Wstawianie.Size = new System.Drawing.Size(81, 17);
             this.Wstawianie.TabIndex = 6;
@@ -132,7 +136,7 @@
             // Szybkie
             // 
             this.Szybkie.AutoSize = true;
-            this.Szybkie.Location = new System.Drawing.Point(53, 233);
+            this.Szybkie.Location = new System.Drawing.Point(53, 245);
             this.Szybkie.Name = "Szybkie";
             this.Szybkie.Size = new System.Drawing.Size(63, 17);
             this.Szybkie.TabIndex = 7;
@@ -143,7 +147,7 @@
             // Scalanie
             // 
             this.Scalanie.AutoSize = true;
-            this.Scalanie.Location = new System.Drawing.Point(53, 257);
+            this.Scalanie.Location = new System.Drawing.Point(53, 269);
             this.Scalanie.Name = "Scalanie";
             this.Scalanie.Size = new System.Drawing.Size(67, 17);
             this.Scalanie.TabIndex = 8;
@@ -153,7 +157,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(53, 280);
+            this.button1.Location = new System.Drawing.Point(53, 295);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 9;
@@ -163,7 +167,7 @@
             // 
             // Rosnace
             // 
-            this.Rosnace.Location = new System.Drawing.Point(53, 90);
+            this.Rosnace.Location = new System.Drawing.Point(53, 107);
             this.Rosnace.Name = "Rosnace";
             this.Rosnace.Size = new System.Drawing.Size(75, 23);
             this.Rosnace.TabIndex = 10;
@@ -173,7 +177,7 @@
             // 
             // Malejace
             // 
-            this.Malejace.Location = new System.Drawing.Point(53, 61);
+            this.Malejace.Location = new System.Drawing.Point(53, 78);
             this.Malejace.Name = "Malejace";
             this.Malejace.Size = new System.Drawing.Size(75, 23);
             this.Malejace.TabIndex = 11;
@@ -183,17 +187,17 @@
             // 
             // textBoxLiczby
             // 
-            this.textBoxLiczby.Location = new System.Drawing.Point(53, 35);
+            this.textBoxLiczby.Location = new System.Drawing.Point(53, 52);
             this.textBoxLiczby.Name = "textBoxLiczby";
-            this.textBoxLiczby.Size = new System.Drawing.Size(100, 20);
+            this.textBoxLiczby.Size = new System.Drawing.Size(75, 20);
             this.textBoxLiczby.TabIndex = 12;
             this.textBoxLiczby.TextChanged += new System.EventHandler(this.textBoxLiczby_TextChanged);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(53, 309);
+            this.button2.Location = new System.Drawing.Point(105, 356);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(94, 23);
             this.button2.TabIndex = 13;
             this.button2.Text = "CzyscList";
             this.button2.UseVisualStyleBackColor = true;
@@ -201,9 +205,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(53, 338);
+            this.button3.Location = new System.Drawing.Point(221, 356);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(106, 23);
             this.button3.TabIndex = 14;
             this.button3.Text = "CzyscWykr";
             this.button3.UseVisualStyleBackColor = true;
@@ -212,27 +216,69 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(469, 352);
+            this.listBox1.Location = new System.Drawing.Point(488, 338);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(300, 69);
+            this.listBox1.Size = new System.Drawing.Size(300, 134);
             this.listBox1.TabIndex = 15;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged_1);
             // 
             // CzyscWynik
             // 
-            this.CzyscWynik.Location = new System.Drawing.Point(53, 367);
+            this.CzyscWynik.Location = new System.Drawing.Point(349, 356);
             this.CzyscWynik.Name = "CzyscWynik";
-            this.CzyscWynik.Size = new System.Drawing.Size(75, 23);
+            this.CzyscWynik.Size = new System.Drawing.Size(105, 23);
             this.CzyscWynik.TabIndex = 16;
             this.CzyscWynik.Text = "CzyscWynik";
             this.CzyscWynik.UseVisualStyleBackColor = true;
             this.CzyscWynik.Click += new System.EventHandler(this.CzyscWynik_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(56, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Podaj liczbę";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(218, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(101, 13);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Liczby Generowane";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(346, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(102, 13);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Liczby Posortowane";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(485, 321);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(130, 13);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Czas wykonania sortowań";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(831, 501);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.CzyscWynik);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button3);
@@ -278,6 +324,10 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button CzyscWynik;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
 

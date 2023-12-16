@@ -9,6 +9,8 @@ namespace WindowsFormsApp1
 {
     public class Quicksort : ISorter
     {
+        private Random _random = new Random();
+
         public void Sort(List<int> arr)
         {
             QuickSortRecursive(arr, 0, arr.Count - 1);
@@ -19,30 +21,32 @@ namespace WindowsFormsApp1
             if (left < right)
             {
                 int pi = Partition(arr, left, right);
-                QuickSortRecursive(arr, left, pi - 1);
+                QuickSortRecursive(arr, left, pi);
                 QuickSortRecursive(arr, pi + 1, right);
             }
         }
+
         private int Partition(List<int> arr, int left, int right)
         {
-            int pivot = arr[right];
-            int i = left - 1;
+            int pivotIndex = _random.Next(left, right + 1);
+            int pivot = arr[pivotIndex];
 
-            for (int j = left; j < right; j++)
+            while (left <= right)
             {
-                if (arr[j] < pivot)
+                while (arr[left] < pivot) left++;
+                while (arr[right] > pivot) right--;
+
+                if (left <= right)
                 {
-                    i++;
-                    int temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
+                    int temp = arr[left];
+                    arr[left] = arr[right];
+                    arr[right] = temp;
+
+                    left++;
+                    right--;
                 }
             }
-
-            int temp1 = arr[i + 1];
-            arr[i + 1] = arr[right];
-            arr[right] = temp1;
-            return i + 1;
+            return left - 1;
         }
     }
 }
