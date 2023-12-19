@@ -32,9 +32,6 @@ namespace WindowsFormsApp1
             chart1.Series["CzasWykonania"].Color = System.Drawing.Color.DarkRed;
             chart1.Series["CzasWykonania"].MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             chart1.Titles.Add("Czas wykonania sortowania");
-
-            chart1.ChartAreas[0].AxisX.Title = "Rodzaj sortowania";
-            chart1.ChartAreas[0].AxisY.Title = "Czas wykonania (ms)";
         }
 
         
@@ -87,7 +84,7 @@ namespace WindowsFormsApp1
 
                 for (int i = 0; i < iloscLiczb; i++)
                 {
-                    array[i] = rnd.Next(1000);
+                    array[i] = rnd.Next(10000);
                     Generowane.Items.Add(array[i]);
                 }
             }
@@ -191,6 +188,10 @@ namespace WindowsFormsApp1
             Generowane.Items.Clear();
             Sortowane.Items.Clear();
         }
+        private void CzyscWynik_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+        }
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -233,11 +234,7 @@ namespace WindowsFormsApp1
         {
 
         }
-
-        private void CzyscWynik_Click(object sender, EventArgs e)
-        {
-            listBox1.Items.Clear();
-        }
+        
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
